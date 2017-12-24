@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20171224151221) do
     t.string "hashed_password"
     t.string "phone", null: false
     t.string "profile_pic"
-    t.boolean "gender"
-    t.integer "rate"
-    t.integer "points"
+    t.string "gender"
+    t.integer "rate", default: 0
+    t.integer "points", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

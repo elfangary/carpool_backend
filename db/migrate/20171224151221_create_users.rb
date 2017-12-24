@@ -7,9 +7,9 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :hashed_password
       t.string :phone, null: false
       t.string :profile_pic
-      t.boolean :gender
-      t.integer :rate
-      t.integer :points
+      t.string :gender
+      t.integer :rate, default: 0
+      t.integer :points, default: 100
 
       t.timestamps
     end
