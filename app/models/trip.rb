@@ -1,5 +1,5 @@
 class Trip < ApplicationRecord
-  # has_many :stop_points
+  has_many :stop_points
   belongs_to :driver, class_name: 'User'
   belongs_to :car
 
