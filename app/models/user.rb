@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   # has_many :hh_stop_points
   # has_many :location_requests, dependent: :destroy
-  has_many :trips, class_name: 'Trips', foreign_key: :driver_id, dependent: :destroy
+  has_many :trips, class_name: 'Trip', foreign_key: :driver_id, dependent: :destroy
 
   validates :first_name, :last_name, :email, :phone, presence: true
   validates :email, :phone, uniqueness: true
