@@ -32,4 +32,18 @@ ActiveRecord::Schema.define(version: 20171224191333) do
     t.index ["trip_id"], name: "index_stop_points_on_trip_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "hashed_password"
+    t.string "phone", null: false
+    t.string "profile_pic"
+    t.string "gender"
+    t.integer "rate", default: 0
+    t.integer "points", default: 100
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
