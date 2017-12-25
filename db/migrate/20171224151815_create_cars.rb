@@ -2,7 +2,7 @@ class CreateCars < ActiveRecord::Migration[5.1]
   def change
     create_table :cars do |t|
 
-      # t.belongs_to :user
+      t.belongs_to :user
 
       t.string :model, null: false
       t.string :color, null: false
