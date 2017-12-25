@@ -1,1 +1,0 @@
-json.extract!(:id, :stop_point, :start_time, :end_time, :trip_id, :location_id, :created_at, :updated_at)

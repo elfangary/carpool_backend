@@ -1,1 +1,0 @@
-json.partial! "stop_points/stop_point", stop_point: @stopPoint

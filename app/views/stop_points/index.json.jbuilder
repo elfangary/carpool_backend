@@ -1,1 +1,0 @@
-json.array! @stopPoints, partial: 'stop_points/stop_point', as: :stop_point
