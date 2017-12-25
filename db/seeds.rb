@@ -13,3 +13,5 @@ users = User.create( [
   ] )
 
 trips = Trip.create( [ {car_id: 1, driver_id: 1, day: 2, all_seats: 4}, {car_id: 1, driver_id: 1, day: 3, all_seats: 4}])
+
+car = Car.create({user_id: 2, model: 'Toyota Yaris', color: 'black', number: 123456})

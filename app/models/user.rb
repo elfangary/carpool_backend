@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # has_many :cars, dependent: :destroy
+  has_many :cars, dependent: :destroy
   # has_many :hh_stop_points
   # has_many :location_requests, dependent: :destroy
   has_many :trips, class_name: 'Trips', foreign_key: :driver_id, dependent: :destroy
