@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :trips only: [:index, :show, :create] do
+  resources :trips, only: [:index, :show, :create] do
     resources :stop_points, only: [:index]
   end
   post '/stop_points', to: 'stop_points#create'
