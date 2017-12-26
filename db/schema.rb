@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(version: 20171224191333) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "stop_points", force: :cascade do |t|
-    t.time "start_time"
-    t.time "end_time"
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.bigint "trip_id"
     t.bigint "location_id"
     t.datetime "created_at", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171224191333) do
     t.integer "day"
     t.integer "all_seats"
     t.string "specific_gender"
-    t.boolean "smooking"
+    t.boolean "smoking"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_id"], name: "index_trips_on_car_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20171224191333) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "hashed_password"
+    t.string "hashed_password", null: false
     t.string "phone", null: false
     t.string "profile_pic"
     t.string "gender"

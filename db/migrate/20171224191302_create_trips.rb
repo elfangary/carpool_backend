@@ -6,7 +6,7 @@ class CreateTrips < ActiveRecord::Migration[5.1]
       t.integer :day
       t.integer :all_seats
       t.string :specific_gender
-      t.boolean :smooking
+      t.boolean :smoking
 
       t.timestamps
     end

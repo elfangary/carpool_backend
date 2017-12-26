@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show] 
+  
   def index
     @locations = Location.all
     render json: @locations

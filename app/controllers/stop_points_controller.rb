@@ -1,8 +1,9 @@
 class StopPointsController < ApplicationController
   before_action :set_stop_point, only: [:show]
   before_action :set_trip, only: [:index]
+
   def index
-    @stopPoints = StopPoint.all
+    @stopPoints = @trip.stop_points
     render json: @stopPoints
   end
 
@@ -11,11 +12,11 @@ class StopPointsController < ApplicationController
   end
 
   def create
-    @stopPoint = StopPoint.new stop_point_params
+    @stopPoint = StopPoint.build stop_point_params
     if @stopPoint.save
-      render :show, status: :ok
+      render :show, status: :ok, location: @stop_point
     else
-      render json:@stopPoint.errors, status: :unprocessable_entity
+      render json: @stopPoint.errors, status: :unprocessable_entity
     end
   end
 
@@ -25,10 +26,10 @@ class StopPointsController < ApplicationController
   end
   
   def set_trip
-    @trip = Trip.find params[:id]
+    @trip = Trip.find params[:trip_id]
   end
 
   def stop_point_params
-    params.require(:stop_point).permit(:location_id, :trip_id, :start_time, :end_time)
+    params.permit(:location_id, :start_time, :end_time)
   end
 end
