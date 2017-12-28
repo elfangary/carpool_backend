@@ -1,4 +1,4 @@
-# class ApplicationController < ActionController::API
+class ApplicationController < ActionController::API
 #   require 'json_web_token'
 
 #   def authenticate_request!
@@ -17,4 +17,4 @@
 
 #   def validate_info
     
-# end
+end
