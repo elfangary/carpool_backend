@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :users, only: :show do
     resources :cars, only: [:index, :show]
   end
+
+  # 'login' to:'session#'
 end
