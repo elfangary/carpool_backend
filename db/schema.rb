@@ -10,16 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171224151221) do
+ActiveRecord::Schema.define(version: 20171224191333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "model", null: false
+    t.string "color", null: false
+    t.string "number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stop_points", force: :cascade do |t|
+    t.time "start_time", null: false
+    t.time "end_time", null: false
+    t.bigint "trip_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_stop_points_on_location_id"
+    t.index ["trip_id"], name: "index_stop_points_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.bigint "car_id"
+    t.bigint "driver_id"
+    t.integer "day"
+    t.integer "all_seats"
+    t.string "specific_gender"
+    t.boolean "smoking"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_trips_on_car_id"
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "hashed_password"
+    t.string "hashed_password", null: false
     t.string "phone", null: false
     t.string "profile_pic"
     t.string "gender"
@@ -29,4 +69,5 @@ ActiveRecord::Schema.define(version: 20171224151221) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "trips", "users", column: "driver_id"
 end
