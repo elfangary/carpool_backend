@@ -18,6 +18,18 @@ class TripsController < ApplicationController
     end
   end
 
+  def filter_by_day_and_location
+    @filtered_trips = Trip.where(
+      day: params[:day]
+    ).joins(:stop_points).where(
+      'stop_points.location_id': params[:location_id], 
+      'stop_points.start_time': [params[:start_time], params[:end_time]]
+    )
+    render json: @filtered_trips, status: :ok
+  end
+
+
+
   private
   def set_trip
     @trip = Trip.find params[:id]
