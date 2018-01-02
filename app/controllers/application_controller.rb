@@ -1,20 +1,26 @@
 class ApplicationController < ActionController::API
-#   require 'json_web_token'
+  require 'json_web_token'
 
-#   def authenticate_request!
+  def authenticate_request!
+    if !current_user.present?
+      render json: { message: 'You must be authenticated first'}, status: :unauthorized
+    end
+    rescue JWT::VerificationError, JWT::DecodeError
+      render json: { message: 'Stop hacking'}, status: :unauthorized
+  end
 
-#   end
+  private
+  def jwt_token
+    @jwt_token ||= request.headers['Authentication_Token']
+  end
 
-#   def payload_token
-#     @payload_token || = if request.headers['Authentication-Token'].present?
-#                        request.headers['Authentication-Token'].split('.').last
-#                      end
-#   end
+  def session_info
+    @session_info ||= JsonWebToken.decode(jwt_token)
+  end
 
-#   def session_info
-#     @session_info || = json_web_token.decode(payload_token)
-#   end
-
-#   def validate_info
-    
+  def current_user
+    @current_user ||= User.find session_info[:user_id]
+    rescue ActiveRecord::RecordNotFound
+      nil
+  end
 end

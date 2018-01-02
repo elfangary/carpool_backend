@@ -1,4 +1,4 @@
-json.extract!(@user, :id, :first_name, :last_name, :email, :gender, :hashed_password, :phone, :profile_pic, :rate, :points)
+json.extract!(@user, :id, :first_name, :last_name, :email, :gender, :password, :phone, :profile_pic, :rate, :points)
 
   json.cars do
     json.array! @user.cars do |car|

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     resources :stop_points, only: [:index]
   end
 
-  resources :users, only: :show do
+  resources :users, except: :index do
     resources :cars, only: [:index, :show]
   end
-
-  # 'login' to:'session#'
+  post 'signup', to:'registrations#create'
+  post 'login', to:'sessions#create'
 end

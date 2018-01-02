@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20171224191333) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "hashed_password", null: false
+    t.string "password_digest", null: false
     t.string "phone", null: false
     t.string "profile_pic"
     t.string "gender"

@@ -3,34 +3,34 @@ require 'rails_helper'
 RSpec.describe Trip, type: :model do
   context "can not be created without validation on " do
     it "valid trip" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :day => 3, :all_seats => 3)
       expect(trip.valid?).to eq(true)
     end
     it "day exists" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :all_seats => 3)
       expect(trip.valid?).to eq(false)
     end
 
     it "all seats exists" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :day => 1)
       expect(trip.valid?).to eq(false)
     end
 
     it "specific gender null valid" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3)
       expect(trip.valid?).to eq(true)
     end
 
      it "add specific gender" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip1 = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :specific_gender => "male")
       trip2 = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :specific_gender => "female")
@@ -39,7 +39,7 @@ RSpec.describe Trip, type: :model do
     end
 
     it "add smoking" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip1 = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :smoking => true)
       trip2 = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :specific_gender => "male", :smoking => false)
@@ -50,7 +50,7 @@ RSpec.describe Trip, type: :model do
 
   context "belongs to" do
     it "valid car" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       trip = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :specific_gender => "male", :smoking => false)
       expect(trip.valid?).to eq(false)
     end
@@ -64,7 +64,7 @@ RSpec.describe Trip, type: :model do
 
   context "has many stop points " do
     it "test with 2 or more stop point" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :day => 1, :all_seats => 3, :specific_gender => "male")
       location1 = Location.create(:id => 1, :name => "Maadi")
@@ -80,7 +80,7 @@ RSpec.describe Trip, type: :model do
     end
 
     it "accepts nested attributes for stop points" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       location1 = Location.create!(:id => 1, :name => "Maadi")
       location2 = Location.create!(:id => 2, :name => "Naser city")
       car = user.cars.create(:id => 1, :model => "opel", :color => "red", :number => "123")
