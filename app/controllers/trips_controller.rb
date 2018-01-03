@@ -1,7 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show]
-  before_action :set_user, only: [:driverTripsTracking, :hhTripsTracking]
-  
+
   def index
     @trips = Trip.all
   end
@@ -39,17 +38,17 @@ class TripsController < ApplicationController
 
   def driverTripsTracking
     if params[:time] == "upcoming"
-      @driver_trips = @user.trips
+      @driver_trips = current_user.trips
       @driver_upcoming_trips = @driver_trips.upcoming
       render json: @driver_upcoming_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
     
     elsif params[:time] == "ongoing"
-      @driver_trips = @user.trips
+      @driver_trips = current_user.trips
       @driver_ongoing_trips = @driver_trips.ongoing
       render json: @driver_ongoing_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
     
     elsif params[:time] == "history"
-      @driver_trips = @user.trips
+      @driver_trips = current_user.trips
       @driver_history_trips = @driver_trips.history
       render json: @driver_history_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
     end
@@ -59,13 +58,15 @@ class TripsController < ApplicationController
 
   def hhTripsTracking
     if params[:time] == "upcoming"
-      @hitch_hiker_trips = Trip.upcoming.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', params[:id])
+      @hitch_hiker_trips = Trip.upcoming.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', current_user.id)
       render json: @hitch_hiker_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
+    
     elsif params[:time] == "ongoing"
-      @hitch_hiker_trips = Trip.ongoing.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', params[:id])
+      @hitch_hiker_trips = Trip.ongoing.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', current_user.id)
       render json: @hitch_hiker_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
+    
     elsif params[:time] == "history"
-      @hitch_hiker_trips = Trip.history.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', params[:id])
+      @hitch_hiker_trips = Trip.history.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', current_user.id)
       render json: @hitch_hiker_trips.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
     end
   end
@@ -74,10 +75,6 @@ class TripsController < ApplicationController
   private
   def set_trip
     @trip = Trip.find params[:id]
-  end
-
-  def set_user
-    @user = User.find params[:id]
   end
 
   def trip_params
