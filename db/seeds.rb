@@ -34,3 +34,8 @@ stop_points = StopPoint.create([
   {start_time: '04:00', end_time: '04:30', location_id: 2, trip_id:1},
   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:2}
   ])
+
+hh_stop_points = HhStopPoint.create([
+  {hh_id: 3, booked_seats: 1, stop_point_id: 1},
+  {hh_id: 2, booked_seats: 2, stop_point_id: 6}
+])
