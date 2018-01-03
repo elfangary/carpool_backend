@@ -11,7 +11,7 @@ class ApplicationController < ActionController::API
 
   private
   def jwt_token
-    @jwt_token ||= request.headers['Authentication_Token']
+    @jwt_token ||= request.headers['Authorization'].split(' ').last
   end
 
   def session_info

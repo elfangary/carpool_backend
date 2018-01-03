@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   def responseObj(user)
   {
     auth_token: JsonWebToken.encode({user_id: user.id}),
-    user: {first_name: user.first_name, last_name: user.last_name, email: user.email, phone: user.phone, profile_pic: user.profile_pic, gender: user.gender, rate: user.rate, points: user.points}
+    user: {id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, phone: user.phone, profile_pic: user.profile_pic, gender: user.gender, rate: user.rate, points: user.points}
   }
   end
 
