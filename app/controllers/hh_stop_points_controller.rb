@@ -16,6 +16,8 @@ class HhStopPointsController < ApplicationController
     end
     
     def hh_stop_point_params
-        params.permit(:hh_id, :stop_point_id, :booked_seats)
+        current_user.id = hh_id
+        params.permit(:stop_point_id, :booked_seats)
+         # notifications_attributes: [:body, :user_id, :read]
     end
 end
