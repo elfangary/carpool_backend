@@ -14,7 +14,7 @@ class HhStopPointsController < ApplicationController
     def set_stop_point
         @stop_point = StopPoint.find params[:stop_point_id]
     end
-    
+
     def hh_stop_point_params
         params.permit(:hh_id, :stop_point_id, :booked_seats)
     end
