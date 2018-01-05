@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20171230010929) do
 
   create_table "hh_stop_points", force: :cascade do |t|
     t.integer "booked_seats"
-    t.integer "confirm"
+    t.string "confirm", default: "pending"
     t.bigint "hh_id"
     t.bigint "stop_point_id"
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20171230010929) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "hashed_password", null: false
+    t.string "password_digest", null: false
     t.string "phone", null: false
     t.string "profile_pic"
     t.string "gender"
