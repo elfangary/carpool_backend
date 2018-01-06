@@ -37,5 +37,17 @@ stop_points = StopPoint.create([
 
 hh_stop_points = HhStopPoint.create([
   {hh_id: 3, booked_seats: 1, stop_point_id: 1},
-  {hh_id: 2, booked_seats: 2, stop_point_id: 6}
-])
+  {hh_id: 2, booked_seats: 2, stop_point_id: 2}
+  ])
+
+notifications = Notification.create([
+  # Driver Notification examples(user_id = driver_id)
+  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 1},
+  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 2},
+  # HichHicker Notification examples(user_id = HichHicker_id)
+  {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},
+  {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},
+  {body: 'Sorry, your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
+  {body: 'Sorry, your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
+  {body: 'Sorry, your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 1}
+  ])
