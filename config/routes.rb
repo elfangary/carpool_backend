@@ -31,5 +31,5 @@ Rails.application.routes.draw do
   post '/hitch-hiking', to: 'hh_stop_points#create'
 
   #Notification Routes
-  resources :notifications, except: [:destroy, :show]
+  resources :notifications, except: :destroy
 end
