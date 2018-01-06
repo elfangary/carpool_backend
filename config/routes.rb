@@ -43,6 +43,5 @@ Rails.application.routes.draw do
   resources :add_charged_points, only: [:create]
 
   #Notification Routes
-  resources :notifications, except: [:destroy, :show]
-
+  resources :notifications, except: :destroy
 end
