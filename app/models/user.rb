@@ -30,15 +30,4 @@ class User < ApplicationRecord
     end
   end
 
-  def hh_trips_tracking(time)
-    hh_trips = self.trips.joins(stop_points: {hh_stop_points: :hh}).where('hh_id = ?', self.id)
-    if time == "upcoming"
-      hh_trips.upcoming
-    elsif time == "ongoing"
-      hh_trips.ongoing
-    elsif time == "history"
-      hh_trips.history
-    end
-  end
-
 end

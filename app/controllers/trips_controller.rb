@@ -26,6 +26,6 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.permit(:car_id, :day, :all_seats, :specific_gender, :smoking, stop_points_attributes: [:location_id, :start_time, :end_time])
+    params.permit(:car_id, :day, :all_seats, :specific_gender, :smoking, stop_points_attributes: [:location_id, :start_time, :end_time]).merge(driver_id: @driver_id)
   end
 end
