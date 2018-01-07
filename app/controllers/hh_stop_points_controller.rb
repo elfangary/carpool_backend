@@ -1,7 +1,6 @@
 class HhStopPointsController < ApplicationController
     attr_accessor :hh_id
     before_action :set_stop_point
-    before_action :set_hh_stop_point, :only [:update]
 
     def create
         @hh_id = current_user.id
@@ -20,7 +19,7 @@ class HhStopPointsController < ApplicationController
     end
     
     def hh_stop_point_params
-        params.permit(:stop_point_id, :booked_seats, :confirm)
+        params.permit(:stop_point_id, :booked_seats).merge(hh_id: @hh_id)
     end
     
 end

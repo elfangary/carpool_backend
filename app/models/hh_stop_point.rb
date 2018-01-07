@@ -6,6 +6,6 @@ class HhStopPoint < ApplicationRecord
 
     def accept_or_reject_hhStopPoint(val)
         self.confirm = val
-        self
+        self.save
     end
 end
