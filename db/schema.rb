@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180103210829) do
   create_table "hh_stop_points", force: :cascade do |t|
     t.integer "booked_seats"
     t.string "confirm", default: "pending"
+    t.integer "points_on_hold", default: 0
     t.bigint "hh_id"
     t.bigint "stop_point_id"
     t.datetime "created_at", null: false

@@ -6,7 +6,7 @@ class HhStopPointsController < ApplicationController
         @hh_id = current_user.id
         @hh_stop_point = @stop_point.hh_stop_points.build hh_stop_point_params
         if @hh_stop_point.save
-            render json: @hh_stop_point , status: :ok
+            render json: @hh_stop_point, status: :ok
         else
             render json: @_hh_stop_point.errors, status: :unprocessable_entity
         end

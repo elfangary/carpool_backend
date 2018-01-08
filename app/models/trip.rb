@@ -22,11 +22,11 @@ class Trip < ApplicationRecord
     self.where(
       day: day
     ).joins(:stop_points).where(
-      'stop_points.location_id': location_id, 
+      'stop_points.location_id': location_id,
       'stop_points.start_time': [start_time, end_time]
     )
   end
-  
+
   def change_available_seats
     self.all_seats = self.available_seats
     self
@@ -41,6 +41,11 @@ class Trip < ApplicationRecord
     elsif time == "history"
       hh_trips.history
     end
+  end
+
+  def get_on_hold_points
+    onhold_points = self.stop_points.joins(:hh_stop_points).sum :points_on_hold
+    self.driver.add_points(onhold_points)
   end
 
 

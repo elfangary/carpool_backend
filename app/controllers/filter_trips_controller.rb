@@ -3,7 +3,7 @@ class FilterTripsController < ApplicationController
         @filtered_trips = Trip.filter_by_day_and_location(params[:day], params[:location_id], params[:start_time], params[:end_time])
         ff = @filtered_trips.map do |trip|
             trip.change_available_seats
-        end   
+        end
         render json: ff.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
     end
 end
