@@ -7,6 +7,7 @@ class CreateTrips < ActiveRecord::Migration[5.1]
       t.integer :all_seats
       t.string :specific_gender
       t.boolean :smoking
+      t.string :status, :default => "pending"
 
       t.timestamps
     end

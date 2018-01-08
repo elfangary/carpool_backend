@@ -34,4 +34,10 @@ Rails.application.routes.draw do
   #Update Hh Stop Point
   patch '/hitch-hicker-point-update', to: 'change_hh_stop_point_status#update'
 
+  #Get User Rating
+  get '/rating', to: 'user_rating#index'
+
+  #Rate Another User
+  patch '/add_rate', to: 'user_rating#update'
+
 end

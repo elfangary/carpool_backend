@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20171230010929) do
   end
 
   create_table "stop_points", force: :cascade do |t|
-    t.time "start_time", null: false
-    t.time "end_time", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.bigint "trip_id"
     t.bigint "location_id"
     t.datetime "created_at", null: false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20171230010929) do
     t.integer "all_seats"
     t.string "specific_gender"
     t.boolean "smoking"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_id"], name: "index_trips_on_car_id"
@@ -75,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171230010929) do
     t.string "profile_pic"
     t.string "gender"
     t.integer "rate", default: 0
+    t.integer "raters_no", default: 0
     t.integer "points", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
