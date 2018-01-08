@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :profile_pic
       t.string :gender
       t.integer :rate, default: 0
+      t.integer :raters_no, default: 0
       t.integer :points, default: 100
 
       t.timestamps
