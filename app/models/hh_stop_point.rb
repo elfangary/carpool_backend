@@ -4,4 +4,9 @@ class HhStopPoint < ApplicationRecord
     # accepts_nested_attributes_for :notifications
 
     validates :stop_point, :hh, :booked_seats, presence: true
+
+    def accept_or_reject_hhStopPoint(val)
+        self.confirm = val
+        self.save
+    end
 end
