@@ -1,6 +1,7 @@
 class HhStopPointsController < ApplicationController
     attr_accessor :hh_id
     before_action :set_stop_point
+    after_action :create_notification, only: :create
 
     def create
         @hh_id = current_user.id
@@ -13,15 +14,20 @@ class HhStopPointsController < ApplicationController
     end
 
     private
-
     def set_stop_point
         @stop_point = StopPoint.find params[:stop_point_id]
     end
 
     def hh_stop_point_params
         current_user.id = hh_id
-         # notifications_attributes: [:body, :user_id, :read]
         params.permit(:stop_point_id, :booked_seats).merge(hh_id: @hh_id)
+    end
+
+    def create_notification
+        @notification = @hh_stop_point.notifications.new 
+        @notification.body = 'You have a new request'
+        @notification.user_id = @hh_stop_point.stop_point.trip.driver_id
+        @notification.save!
     end
 
 end

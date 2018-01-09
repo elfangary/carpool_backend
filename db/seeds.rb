@@ -43,8 +43,8 @@ hh_stop_points = HhStopPoint.create([
 
 notifications = Notification.create([
   # Driver Notification examples(user_id = driver_id)
-  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 1},
-  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 2},
+  {body: 'you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 1},
+  {body: 'you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 2},
   # HichHicker Notification examples(user_id = HichHicker_id)
   {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},
   {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},

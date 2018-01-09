@@ -26,8 +26,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'jwt'
-
 gem 'stripe'
+
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

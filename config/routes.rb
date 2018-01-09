@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
   put '/user/update', to: 'users#update';
+  patch '/user/update', to: 'users#update';
 
   #Car Routes
-  resources :cars, only: [:index, :show]
+  resources :cars, except: :update
 
   #Location Routes
   resources :locations, only: [:index, :show]
@@ -43,5 +44,5 @@ Rails.application.routes.draw do
   resources :add_charged_points, only: [:create]
 
   #Notification Routes
-  resources :notifications, except: :destroy
+  resources :notifications, except: [:destroy, :create]
 end
