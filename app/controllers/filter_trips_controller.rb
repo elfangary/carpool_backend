@@ -4,7 +4,7 @@ class FilterTripsController < ApplicationController
         @ff = @filtered_trips.map do |trip|
             trip.change_available_seats
         end
-        render json: ff.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
+        render json: @ff.to_json(:include =>  {:stop_points => {:include => :location}, :driver => {}}), status: :ok
 
     end
 end

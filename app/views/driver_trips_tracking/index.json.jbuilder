@@ -1,5 +1,5 @@
 json.array! @trips do |trip|
-  json.extract!(trip, :all_seats, :day, :status)
+  json.extract!(trip, :all_seats, :day, :status, :id)
   json.driver trip.driver, :first_name, :last_name, :phone, :profile_pic, :rate
 
   start = false
