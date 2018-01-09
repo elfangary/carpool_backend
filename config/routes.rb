@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  #Signup and Login Routes
+  #Admin Signup and Login Routes
+  namespace :admin do 
+    post 'signup', to: 'regestration#create';
+    post 'login', to: 'login#create';
+  end
+
+  #User Signup and Login Routes
   post 'signup', to:'registrations#create'
   post 'login', to:'sessions#create'
 
