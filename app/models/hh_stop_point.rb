@@ -18,4 +18,9 @@ class HhStopPoint < ApplicationRecord
         self.points_on_hold = amount
       end
     end
+
+    def reset_points
+        self.points_on_hold = 0
+        self.save
+    end
 end

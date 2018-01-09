@@ -46,6 +46,7 @@ class Trip < ApplicationRecord
   def get_on_hold_points
     onhold_points = self.stop_points.joins(:hh_stop_points).sum :points_on_hold
     self.driver.add_points(onhold_points)
+    self.hh_stop_points.map { |stop_point| stop_point.reset_points  }
   end
 
 end
