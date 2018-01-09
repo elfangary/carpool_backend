@@ -20,6 +20,13 @@ class User < ApplicationRecord
     self.points += chargedPoints
   end
 
+  def change_rating(user_id, val)
+    user = User.where('id = ?', user_id)
+    user.raters_no += 1
+    user.rate += val
+    user.save
+  end
+
   def driver_trips_tracking(time)
     driver_trips = self.trips.where('driver_id = ?', self.id)
     if time == "upcoming"
@@ -29,6 +36,21 @@ class User < ApplicationRecord
     elsif time == "history"
       driver_trips.history
     end
+  end
+
+  def withdraw(amount)
+    if self.points >= amount
+      self.points -= amount
+      self.save
+      return true
+    end
+    self.errors.add(:points, 'could not withdraw amount')
+    return false
+  end
+
+  def add_points(amount)
+    self.points += amount
+    self.save
   end
 
 end

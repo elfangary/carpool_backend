@@ -18,5 +18,5 @@ class NotificationsController < ApplicationController
   def notification_params
     params.permit(:user_id, :body, :hh_stop_point_id, :read)
   end
- 
+
 end

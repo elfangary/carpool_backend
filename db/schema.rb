@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180109131804) do
   create_table "hh_stop_points", force: :cascade do |t|
     t.integer "booked_seats"
     t.string "confirm", default: "pending"
+    t.integer "points_on_hold", default: 0
     t.bigint "hh_id"
     t.bigint "stop_point_id"
     t.datetime "created_at", null: false
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20180109131804) do
     t.integer "all_seats"
     t.string "specific_gender"
     t.boolean "smoking"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["car_id"], name: "index_trips_on_car_id"
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 20180109131804) do
     t.string "profile_pic"
     t.string "gender"
     t.integer "rate", default: 0
+    t.integer "raters_no", default: 0
     t.integer "points", default: 100
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

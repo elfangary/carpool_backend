@@ -41,14 +41,16 @@ Rails.application.routes.draw do
   #Update Hh Stop Point
   patch '/hitch-hicker-point-update', to: 'change_hh_stop_point_status#update'
 
-
-  #Create hh Stop Point
-  post '/hitch-hiking', to: 'hh_stop_points#create'
-
   #Create a new payment
   resources :charges, only: [:create]
   resources :add_charged_points, only: [:create]
 
   #Notification Routes
-  resources :notifications, except: [:destroy, :create]
+  resources :notifications, except: :destroy
+
+  #Get User Rating
+  get '/rating', to: 'user_rating#index'
+
+  #Rate Another User
+  # patch '/add_rate', to: 'user_rating#update'
 end
