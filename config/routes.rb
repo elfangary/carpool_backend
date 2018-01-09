@@ -45,4 +45,5 @@ Rails.application.routes.draw do
   get '/rating', to: 'user_rating#index'
 
   #Rate Another User
-  patch '/add_rate', to: 'user_rating#update'
+  # patch '/add_rate', to: 'user_rating#update'
+end

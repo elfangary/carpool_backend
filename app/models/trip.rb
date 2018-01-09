@@ -25,13 +25,10 @@ class Trip < ApplicationRecord
     self.all_seats - seats
   end
 
-  def self.filter_by_day_and_location(day, location_id, start_time, end_time)
-    self.where(
-      day: day
-    ).joins(:stop_points).where(
-      'stop_points.location_id': location_id,
-      'stop_points.start_time': [start_time, end_time]
-    )
+  def self.filter_by_day_and_location(day, location_id_start, location_id_end,  start_time, end_time)
+    self.where(day: day).joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
+                        .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
+                        .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
   end
 
   def change_available_seats

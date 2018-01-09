@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
- {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'weee', password_confirmation: 'weee', gender: 'female' },
- {first_name: 'Dina', last_name: 'hamamo', email: 'dinamhamamo@gmail.com', phone: '0121222134', password: 'beeee', password_confirmation: 'beeee', gender: 'female'},
- {first_name: 'ahmed', last_name: 'fangary', email: 'ahmedfangary@gmail.com', phone: '0121777134', password: 'zeeee', password_confirmation: 'zeeee', gender: 'male'}
+ {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female' },
+ {first_name: 'Dina', last_name: 'hamamo', email: 'dinamhamamo@gmail.com', phone: '0121222134', password: 'password', password_confirmation: 'password', gender: 'female'},
+ {first_name: 'ahmed', last_name: 'fangary', email: 'ahmedfangary@gmail.com', phone: '0121777134', password: 'password', password_confirmation: 'password', gender: 'male'}
   ])
 
 cars = Car.create([
