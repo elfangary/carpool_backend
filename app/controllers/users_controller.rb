@@ -2,13 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_request!
 
   def show
-    render json: current_user, status: :ok
   end
 
   # PATCH/PUT /users/1
   def update
-    if current_user.update(user_params)
-      render json: current_user
+    if current_user.update_attributes(user_params)
+      render json: current_user, status: :ok
     else
       render json: current_user.errors, status: :unprocessable_entity
     end
@@ -21,6 +20,6 @@ class UsersController < ApplicationController
 
   private
    def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone, :profile_pic, :gender)
+    params.permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone, :profile_pic, :gender)
    end
 end
