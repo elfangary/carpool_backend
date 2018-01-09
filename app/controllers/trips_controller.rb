@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  attr_accessor :driver_id 
+  attr_accessor :driver_id
   before_action :set_trip, only: [:show]
 
   def index
@@ -16,7 +16,7 @@ class TripsController < ApplicationController
     if @trip.save
       render json: @trip, status: :created, location:[ @trip, @stop_point ]
     else
-      render json: @trip.errors, status: :unprocessable_entity 
+      render json: @trip.errors, status: :unprocessable_entity
     end
   end
 

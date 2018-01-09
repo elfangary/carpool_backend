@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
   put '/user/update', to: 'users#update';
-  
+
   #Car Routes
   resources :cars, only: [:index, :show]
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   #Driver Trips Tracking
   get 'driver/trips', to: 'driver_trips_tracking#index'
-  
+
   #Hitch-Hiker Trips Tracking
   get 'hitch-hiker/trips', to: 'hh_trips_tracking#index'
 
@@ -34,6 +34,13 @@ Rails.application.routes.draw do
   #Update Hh Stop Point
   patch '/hitch-hicker-point-update', to: 'change_hh_stop_point_status#update'
 
+  #Create a new payment
+  resources :charges, only: [:create]
+  resources :add_charged_points, only: [:create]
+
+  #Notification Routes
+  resources :notifications, except: :destroy
+
   #Get User Rating
   get '/rating', to: 'user_rating#index'
 
@@ -42,5 +49,4 @@ Rails.application.routes.draw do
 
   #Change Trip Status
   patch '/trip_status', to:'change_trip_status#update'
-
 end

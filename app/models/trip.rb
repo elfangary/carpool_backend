@@ -12,7 +12,7 @@ class Trip < ApplicationRecord
   scope :history, ->{ where('status = ?', "ended") }
 
   def available_seats
-    seats = self.stop_points.joins(:hh_stop_points).sum :booked_seats
+    seats = self.stop_points.joins(:hh_stop_points).where('confirm = ?', "accepted").sum :booked_seats
     self.all_seats - seats
   end
 
@@ -21,7 +21,7 @@ class Trip < ApplicationRecord
                         .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
                         .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
   end
-  
+
   def change_available_seats
     self.all_seats = self.available_seats
     self
@@ -41,6 +41,11 @@ class Trip < ApplicationRecord
   def change_trip_status(new_status)
     self.status = new_status
     self.save
+  end
+
+  def get_on_hold_points
+    onhold_points = self.stop_points.joins(:hh_stop_points).sum :points_on_hold
+    self.driver.add_points(onhold_points)
   end
 
 

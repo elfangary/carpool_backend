@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171230010929) do
+ActiveRecord::Schema.define(version: 20180103210829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171230010929) do
   create_table "hh_stop_points", force: :cascade do |t|
     t.integer "booked_seats"
     t.string "confirm", default: "pending"
+    t.integer "points_on_hold", default: 0
     t.bigint "hh_id"
     t.bigint "stop_point_id"
     t.datetime "created_at", null: false
@@ -40,6 +41,17 @@ ActiveRecord::Schema.define(version: 20171230010929) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "hh_stop_point_id"
+    t.text "body", null: false
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hh_stop_point_id"], name: "index_notifications_on_hh_stop_point_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "stop_points", force: :cascade do |t|
