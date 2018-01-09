@@ -8,4 +8,5 @@ class HhStopPoint < ApplicationRecord
         self.confirm = val
         self.save
     end
+
 end

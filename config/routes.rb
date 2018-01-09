@@ -40,4 +40,7 @@ Rails.application.routes.draw do
   #Rate Another User
   patch '/add_rate', to: 'user_rating#update'
 
+  #Change Trip Status
+  patch '/trip_status', to:'change_trip_status#update'
+
 end
