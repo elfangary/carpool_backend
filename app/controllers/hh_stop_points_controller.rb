@@ -1,6 +1,7 @@
 class HhStopPointsController < ApplicationController
     attr_accessor :hh_id
-    before_action :set_stop_point
+    before_action :set_stop_point, only: [:create]
+    before_action :set_hh_stop_point, only: [:update]
 
     def create
         @hh_id = current_user.id
@@ -12,10 +13,19 @@ class HhStopPointsController < ApplicationController
         end
     end
 
-    private
+    def update
+       @hh_stop_point.accept_or_reject_hhStopPoint(params[:confirm])
 
+        render json: @hh_stop_point, status: :ok
+    end
+
+    private
     def set_stop_point
         @stop_point = StopPoint.find params[:stop_point_id]
+    end
+
+    def set_hh_stop_point
+        @hh_stop_point = HhStopPoint.find params[:id]
     end
 
     def hh_stop_point_params

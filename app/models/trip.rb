@@ -9,7 +9,8 @@ class Trip < ApplicationRecord
   now = Time.now.strftime("%Y-%m-%d %H:%M:%S")
   scope :upcoming, ->{ where('status = ?', "pending") }
   scope :ongoing, ->{ where('status = ?', "started") }
-  scope :history, ->{ where('status = ?', "ended") }
+  scope :history, ->{ where('status IN (?)', ["ended", "cancelled"]) }
+
 
   def available_seats
     seats = self.stop_points.joins(:hh_stop_points).where('confirm = ?', "accepted").sum :booked_seats
@@ -17,9 +18,9 @@ class Trip < ApplicationRecord
   end
 
   def self.filter_by_day_and_location(day, location_id_start, location_id_end, start_time, end_time)
-    self.where(day: day).joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
-                        .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
-                        .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
+    self.where(day: day, status: "pending").joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
+                                          .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
+                                          .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
   end
 
   def change_available_seats
@@ -46,7 +47,7 @@ class Trip < ApplicationRecord
   def get_on_hold_points
     onhold_points = self.stop_points.joins(:hh_stop_points).sum :points_on_hold
     self.driver.add_points(onhold_points)
-    self.hh_stop_points.map { |stop_point| stop_point.reset_points  }
+    self.hh_stop_points.map { |stop_point| stop_point.reset_points }
   end
 
 end
