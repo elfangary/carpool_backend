@@ -14,7 +14,6 @@ class TripsController < ApplicationController
     @driver_id = current_user.id
     @trip = Trip.new trip_params
     if @trip.save!
-      # end_time = @trip.stop_points.order(end_time: :desc).first.end_time.to_formatted_s(:db)
       end_time = Time.zone.at(params[:time_in_seconds] / 1000)
       TripStatusJob.set(wait_until: end_time).perform_later(@trip)
       render json: @trip, status: :created, location:[ @trip, @stop_point ]
