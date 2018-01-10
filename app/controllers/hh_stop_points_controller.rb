@@ -2,6 +2,7 @@ class HhStopPointsController < ApplicationController
     attr_accessor :hh_id
     before_action :set_stop_point
     after_action :create_notification, only: :create
+    # after_action :show_notification, only: :create_notification
 
     def create
         @hh_id = current_user.id
@@ -12,6 +13,10 @@ class HhStopPointsController < ApplicationController
             render json: @_hh_stop_point.errors, status: :unprocessable_entity
         end
     end
+
+    # def show_notification
+    #     render json: @notification, status: :ok
+    # end
 
     private
     def set_stop_point

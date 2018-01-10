@@ -14,11 +14,13 @@ class CarsController < ApplicationController
     if @car.save!
       render json: @car, status: :created
     else
+      byebug
       render json: @car.errors, status: :unauthorized
     end
   end
 
   def destroy
+    @car = Car.find params[:id]
     @car.destroy
     render json: { operation: 'OK' }, status: :ok
   end
