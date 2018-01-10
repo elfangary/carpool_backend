@@ -14,9 +14,11 @@ class HhStopPointsController < ApplicationController
     end
 
     def update
-       @hh_stop_point.accept_or_reject_hhStopPoint(params[:confirm])
+        @hh_stop_point.accept_or_reject_hhStopPoint(params[:confirm])
 
-        render json: @hh_stop_point, status: :ok
+        @hh_stop_point.add_points_to_hh if params[:confirm] == "rejected"
+
+        render json: {hh_stop_point: @hh_stop_point, points: current_user.points}, status: :ok
     end
 
     private

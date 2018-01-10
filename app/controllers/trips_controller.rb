@@ -14,6 +14,8 @@ class TripsController < ApplicationController
     @driver_id = current_user.id
     @trip = Trip.new trip_params
     if @trip.save
+      end_time = @trip.stop_points.order(end_time: :desc).first.end_time.to_formatted_s(:db)
+      TripStatusJob.set(wait_until: end_time).perform_later(@trip)
       render json: @trip, status: :created, location:[ @trip, @stop_point ]
     else
       render json: @trip.errors, status: :unprocessable_entity
@@ -23,7 +25,13 @@ class TripsController < ApplicationController
   def update
     @trip.change_trip_status(params[:status])
 
-    @trip.get_on_hold_points if params[:status] == "ended"
+    if params[:status] == "ended"
+      @trip.get_on_hold_points
+    elsif params[:status] == "cancelled"
+      @trip.hh_stop_points.map { |hh_stop_point|
+      hh_stop_point.confirm = "cancelled"
+      hh_stop_point.add_points_to_hh }
+    end
 
     render json: {trip: @trip, points: current_user.points}, status: :ok
   end

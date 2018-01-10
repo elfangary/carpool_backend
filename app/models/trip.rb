@@ -6,10 +6,9 @@ class Trip < ApplicationRecord
   belongs_to :car
   validates :day, :all_seats, :driver_id, :car_id, presence: true
 
-  now = Time.now.strftime("%Y-%m-%d %H:%M:%S")
   scope :upcoming, ->{ where('status = ?', "pending") }
   scope :ongoing, ->{ where('status = ?', "started") }
-  scope :history, ->{ where('status IN (?)', ["ended", "cancelled"]) }
+  scope :history, ->{ where('status IN (?)', ["ended", "cancelled", "timedout"]) }
 
 
   def available_seats
@@ -18,9 +17,10 @@ class Trip < ApplicationRecord
   end
 
   def self.filter_by_day_and_location(day, location_id_start, location_id_end, start_time, end_time)
-    self.where(day: day, status: "pending").joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
-                                          .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
-                                          .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
+    self.where('day = ? AND status = ? AND all_seats > ?', day, 'pending', 0)
+    .joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
+    .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
+    # .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
   end
 
   def change_available_seats
@@ -44,11 +44,32 @@ class Trip < ApplicationRecord
     self.save
   end
 
-  def get_on_hold_points
+  def get_on_hold_points()
     onhold_points = self.stop_points.joins(:hh_stop_points).sum :points_on_hold
     self.driver.add_points(onhold_points)
-    self.hh_stop_points.map { |stop_point| stop_point.reset_points }
+    self.hh_stop_points.map { |hh_stop_point| hh_stop_point.reset_points }
   end
 
+  def cleanUp
+    end_time = self.stop_points.order(end_time: :desc).first.end_time.to_formatted_s(:db)
+    time = Time.now.to_formatted_s(:db)
+    puts "Hello"
+    puts "time#{time}"
+    puts "end_time#{end_time}"
+
+    if (time >= end_time)
+      puts "inside"
+      self.hh_stop_points.map { |hh_stop_point|
+        puts "inside hh"
+        if (self.status == "pending" || hh_stop_point.confirm == "pending")
+          hh_stop_point.add_points_to_hh
+          hh_stop_point.confirm = "timedout"
+          hh_stop_point.save
+        end
+      }
+      self.status = "timedout" if self.status == "pending"
+      self.save
+    end
+  end
 end
 
