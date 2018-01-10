@@ -19,10 +19,10 @@ class User < ApplicationRecord
   end
 
   def change_rating(user_id, val)
-    user = User.where('id = ?', user_id)
-    user.raters_no += 1
-    user.rate += val
-    user.save
+    @user = User.find_by('id = ?', user_id)
+    @user.raters_no += 1
+    @user.rate += val.to_i
+    @user.save
   end
 
   def driver_trips_tracking(time)

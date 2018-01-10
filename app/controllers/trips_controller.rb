@@ -20,6 +20,12 @@ class TripsController < ApplicationController
     end
   end
 
+  def update
+    @trip = Trip.find params[:trip_id]
+    trip = @trip.change_trip_status(params[:status])
+    render json: @trip, status: :ok
+  end
+
   private
   def set_trip
     @trip = Trip.find params[:id]

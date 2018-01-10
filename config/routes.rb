@@ -42,11 +42,11 @@ Rails.application.routes.draw do
   resources :notifications, except: :destroy
 
   #Get User Rating
-  get '/rating', to: 'user_rating#index'
+  get '/rating', to: 'user_rating#show'
 
   #Rate Another User
-  patch '/add_rate', to: 'user_rating#update'
+  post '/rate_user', to: 'user_rating#create'
 
   #Change Trip Status
-  patch '/trip_status', to:'change_trip_status#update'
+  patch '/trip_status', to:'trips#update'
 end

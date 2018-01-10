@@ -7,7 +7,7 @@ json.array! @trips do |trip|
     json.extract!(stop_point, :location_id, :start_time, :end_time)
     json.location stop_point.location.name
     json.hh stop_point.hh_stop_points do |hh|
-      json.extract!(hh, :id, :booked_seats, :confirm, :stop_point_id)
+      json.extract!(hh, :id, :hh_id, :booked_seats, :confirm, :stop_point_id)
       json.name "#{hh.hh.first_name} #{hh.hh.last_name}"
       start ||= (hh.confirm == 'accepted')
     end
