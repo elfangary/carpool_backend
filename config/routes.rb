@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   resources :add_charged_points, only: [:create]
 
   #Notification Routes
+  mount ActionCable.server => '/cable'
   resources :notifications, except: :destroy
 
   #Get User Rating
