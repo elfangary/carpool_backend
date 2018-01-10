@@ -53,12 +53,8 @@ class Trip < ApplicationRecord
   def cleanUp
     end_time = self.stop_points.order(end_time: :desc).first.end_time.to_formatted_s(:db)
     time = Time.now.to_formatted_s(:db)
-    puts "Hello"
-    puts "time#{time}"
-    puts "end_time#{end_time}"
 
     if (time >= end_time)
-      puts "inside"
       self.hh_stop_points.map { |hh_stop_point|
         puts "inside hh"
         if (self.status == "pending" || hh_stop_point.confirm == "pending")
