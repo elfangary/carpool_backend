@@ -24,19 +24,22 @@ Rails.application.routes.draw do
   #Hitch-Hiker Trips Tracking
   get 'hitch-hiker/trips', to: 'hh_trips_tracking#index'
 
-  resources :trips, only: [:index, :show, :create] do
+  resources :trips, only: [:index, :show, :create, :update] do
     resources :stop_points, only: [:index]
   end
 
+resources :hh_stop_points, only: [:create, :update]
+
   #Create New HH Stop Point
-  post '/hitch-hiking', to: 'hh_stop_points#create'
+  # post '/hitch-hiking', to: 'hh_stop_points#create'
 
   #Update Hh Stop Point
-  patch '/hitch-hicker-point-update', to: 'change_hh_stop_point_status#update'
+  # patch '/hitch-hicker-point-update', to: 'hh_stop_point#update'
 
   #Create a new payment
   resources :charges, only: [:create]
-  resources :add_charged_points, only: [:create]
+  post '/add_charged_points', to: 'add_charged_points#charge'
+  # resources :add_charged_points, only: [:create]
 
   #Notification Routes
   resources :notifications, except: :destroy
@@ -48,8 +51,7 @@ Rails.application.routes.draw do
   post '/rate_user', to: 'user_rating#create'
 
   #Rate Driver
-  patch '//driver_rate', to: 'user_rating#update'
+  patch '/driver_rate', to: 'user_rating#update'
 
-  #Change Trip Status
-  patch '/trip_status', to:'trips#update'
+
 end

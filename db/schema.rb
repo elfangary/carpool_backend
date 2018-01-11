@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20180103210829) do
   end
 
   create_table "stop_points", force: :cascade do |t|
-    t.time "start_time", null: false
-    t.time "end_time", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.bigint "trip_id"
     t.bigint "location_id"
     t.datetime "created_at", null: false

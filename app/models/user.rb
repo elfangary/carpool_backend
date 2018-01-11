@@ -41,7 +41,7 @@ class User < ApplicationRecord
       self.save
       return true
     end
-    self.errors.add(:points, 'could not withdraw amount')
+      self.errors.add(:points, 'could not withdraw amount')
     return false
   end
 

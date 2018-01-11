@@ -12,9 +12,8 @@ class UserRatingController < ApplicationController
     end
 
     def update
-        byebug
         User.find(params[:driver_id]).change_rating(params[:rate])
-        render json: current_user.rate, status: :ok
+        render json: :rate
     end
 
 end
