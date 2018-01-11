@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe StopPoint, type: :model do
   context "can not be created without validations on" do
     it "valid stop point" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:car_id => 1, :day => 3, :all_seats => 3)
       location = Location.create(:id => 1, :name => "Maadi")
@@ -17,7 +17,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "start time exist" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create!(:id => 1, :car_id => 1, :day => 3, :all_seats => 3)
       location = Location.create!(:id => 1, :name => "Maadi")
@@ -31,7 +31,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "end time exists" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create!(:id => 1, :car_id => 1, :day => 3, :all_seats => 3)
       location = Location.create!(:id => 1, :name => "Maadi")
@@ -45,7 +45,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "location exists" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :assword => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create!(:id => 1, :car_id => 1, :day => 3, :all_seats => 3)
       location = Location.create!(:id => 1, :name => "Maadi")
@@ -59,7 +59,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "location exists and valid" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create!(:id => 1, :car_id => 1, :day => 3, :all_seats => 3)
       stop_point = StopPoint.create(:start_time => "02:00", :end_time => "02:00", :location_id => 1, :trip_id => 1)
@@ -71,7 +71,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "trip exists" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       trip = user.trips.create(:id => 1, :car_id => 1, :day => 3, :all_seats => 3)
       location = Location.create(:id => 1, :name => "Maadi")
@@ -85,7 +85,7 @@ RSpec.describe StopPoint, type: :model do
     end
 
     it "trip exists and valid" do
-      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create!(:id => 1, :model => "opel", :color => "red", :number => "123")
       location = Location.create(:id => 1, :name => "Maadi")
       stop_point = StopPoint.create(:start_time => "02:00", :end_time => "02:30", :location_id => 1, :trip_id => 1)

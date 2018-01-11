@@ -24,7 +24,7 @@ class StopPointsController < ApplicationController
   def set_stop_point
     @stopPoint = StopPoint.find params[:id]
   end
-  
+
   def set_trip
     @trip = Trip.find params[:trip_id]
   end

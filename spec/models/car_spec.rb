@@ -19,7 +19,7 @@ RSpec.describe Car, type: :model do
     end
 
     it "number is unique" do
-      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car1 = Car.create(:user_id => 1, :model => "opel", :color => "red",:number => "123")
       car2 = Car.create(:user_id => 1, :model => "opel", :color => "black",:number => "123")
       expect(car1.valid?).to eq(true)
@@ -32,7 +32,7 @@ RSpec.describe Car, type: :model do
     end
     
     it "car belongs to user" do
-      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create(:model => "opel", :color => "red",:number => "123")
       expect(car.valid?).to eq(true)
       expect(user.reload.cars).to eq([car])
@@ -41,7 +41,7 @@ RSpec.describe Car, type: :model do
 
   context "has many trips" do
     it "has 2 or more trips" do
-      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :hashed_password => "ghgh22", :phone => "01223765378", :gender => "male")
+      user = User.create!(:id => 1, :first_name => "abdelrhman", :last_name => "Taman", :email => "abdelrhmanTaman@gmail.com", :password => "ghgh22", :phone => "01223765378", :gender => "male")
       car = user.cars.create(:model => "opel", :color => "red",:number => "123")
       trip1 = car.trips.create!(:driver_id => 1, :day => 1, :all_seats => 3)
       trip2 = car.trips.create!(:driver_id => 1, :day => 1, :all_seats => 3)
