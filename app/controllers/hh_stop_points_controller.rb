@@ -4,6 +4,7 @@ class HhStopPointsController < ApplicationController
     before_action :set_hh_stop_point, only: [:update]
     after_action :create_notification, only: :create
     # after_action :show_notification, only: :create_notification
+    after_action :create_notification_after_update, only: :update
 
     def create
         @hh_id = current_user.id
@@ -18,6 +19,8 @@ class HhStopPointsController < ApplicationController
     # def show_notification
     #     render json: @notification, status: :ok
     # end
+
+    # {pending, accepted, rejected, cancelled, timedout}
 
     def update
         @hh_stop_point.accept_or_reject_hhStopPoint(params[:confirm])
@@ -45,6 +48,23 @@ class HhStopPointsController < ApplicationController
         @notification = @hh_stop_point.notifications.new 
         @notification.body = 'You have a new request'
         @notification.user_id = @hh_stop_point.stop_point.trip.driver_id
+        @notification.save!
+    end
+
+    def create_notification_after_update
+        @notification = @hh_stop_point.notifications.new
+        if (params[:confirm] == "pending")
+            @notification.body = 'Your request have been sent, wait for answer'
+        elsif (params[:confirm] == "accepted")
+            @notification.body = 'Your request have been accepted'
+        elsif (params[:confirm] == "rejected")
+            @notification.body = 'Your request have been rejected'
+        elsif (params[:confirm] == "cancelled")
+            @notification.body = 'Sorry,The Trip have been cancelled'
+        else
+            @notification.body = 'You got your points back, check your points'
+        end
+        @notification.user_id = @hh_stop_point.hh_id
         @notification.save!
     end
 
