@@ -7,13 +7,13 @@ class UserRatingController < ApplicationController
 
     def create 
         params[:ratings].each do |rate|
-            byebug
-            current_user.change_rating(rate[:hh_id], rate[:rating])
+            User.find(rate[:hh_id]).change_rating(rate[:rating])
         end
     end
 
     def update
-        current_user.change_rating(params[:user_id], params[:rate])
+        byebug
+        User.find(params[:driver_id]).change_rating(params[:rate])
         render json: current_user.rate, status: :ok
     end
 

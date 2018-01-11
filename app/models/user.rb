@@ -18,11 +18,10 @@ class User < ApplicationRecord
     self.points += chargedPoints
   end
 
-  def change_rating(user_id, val)
-    @user = User.find_by('id = ?', user_id)
-    @user.raters_no += 1
-    @user.rate += val.to_i
-    @user.save
+  def change_rating(rating)
+    self.raters_no += 1
+    self.rate += rating.to_i
+    self.save
   end
 
   def driver_trips_tracking(time)

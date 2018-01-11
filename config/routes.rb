@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   #Rate Another User
   post '/rate_user', to: 'user_rating#create'
 
+  #Rate Driver
+  patch '//driver_rate', to: 'user_rating#update'
+
   #Change Trip Status
   patch '/trip_status', to:'trips#update'
 end
