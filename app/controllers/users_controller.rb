@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-
     if current_user.update_attributes(user_params)
       render json: current_user, status: :ok
     else

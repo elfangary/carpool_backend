@@ -31,19 +31,22 @@ Rails.application.routes.draw do
   #Hitch-Hiker Trips Tracking
   get 'hitch-hiker/trips', to: 'hh_trips_tracking#index'
 
-  resources :trips, only: [:index, :show, :create] do
+  resources :trips, only: [:index, :show, :create, :update] do
     resources :stop_points, only: [:index]
   end
 
+  resources :hh_stop_points, only: [:create, :update]
+
   #Create New HH Stop Point
-  post '/hitch-hiking', to: 'hh_stop_points#create'
+  # post '/hitch-hiking', to: 'hh_stop_points#create'
 
   #Update Hh Stop Point
-  patch '/hitch-hicker-point-update', to: 'change_hh_stop_point_status#update'
+  # patch '/hitch-hicker-point-update', to: 'hh_stop_point#update'
 
   #Create a new payment
   resources :charges, only: [:create]
-  resources :add_charged_points, only: [:create]
+  post '/add_charged_points', to: 'add_charged_points#charge'
+  # resources :add_charged_points, only: [:create]
 
   #Notification Routes
   mount ActionCable.server => '/cable'
@@ -53,8 +56,16 @@ Rails.application.routes.draw do
   get '/rating', to: 'user_rating#index'
 
   #Rate Another User
+
+  # patch '/add_rate', to: 'user_rating#update'
   patch '/add_rate', to: 'user_rating#update'
 
   #Change Trip Status
-  patch '/trip_status', to:'change_trip_status#update'
+  # patch '/trip_status', to:'change_trip_status#update'
+
+  #Add trip balance to driver
+  # patch '/add_to_driver', to: 'trip_balance_to_driver#update'
+
+  #Add trip balance to hh
+  post '/add_to_hh', to: 'trip_balance_to_hh#create'
 end
