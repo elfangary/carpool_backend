@@ -45,19 +45,9 @@ resources :hh_stop_points, only: [:create, :update]
   resources :notifications, except: :destroy
 
   #Get User Rating
-  get '/rating', to: 'user_rating#index'
+  get '/rating', to: 'user_rating#show'
 
   #Rate Another User
+  patch '/rate_user', to: 'user_rating#update'
 
-  # patch '/add_rate', to: 'user_rating#update'
-  patch '/add_rate', to: 'user_rating#update'
-
-  #Change Trip Status
-  # patch '/trip_status', to:'change_trip_status#update'
-
-  #Add trip balance to driver
-  # patch '/add_to_driver', to: 'trip_balance_to_driver#update'
-
-  #Add trip balance to hh
-  post '/add_to_hh', to: 'trip_balance_to_hh#create'
 end
