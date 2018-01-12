@@ -48,10 +48,6 @@ resources :hh_stop_points, only: [:create, :update]
   get '/rating', to: 'user_rating#show'
 
   #Rate Another User
-  post '/rate_user', to: 'user_rating#create'
-
-  #Rate Driver
-  patch '/driver_rate', to: 'user_rating#update'
-
+  patch '/rate_user', to: 'user_rating#update'
 
 end

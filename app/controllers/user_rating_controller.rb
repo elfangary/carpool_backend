@@ -5,15 +5,9 @@ class UserRatingController < ApplicationController
         render json: average_rating, status: :ok
     end
 
-    def create 
+    def update 
         params[:ratings].each do |rate|
-            User.find(rate[:hh_id]).change_rating(rate[:rating])
+            User.find(rate[:user_id]).change_rating(rate[:rating])
         end
     end
-
-    def update
-        User.find(params[:driver_id]).change_rating(params[:rate])
-        render json: :rate
-    end
-
 end
