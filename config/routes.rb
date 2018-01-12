@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  #Signup and Login Routes
+  #Admin Signup and Login Routes
+  namespace :admin do 
+    post 'signup', to: 'regestration#create';
+    post 'login', to: 'login#create';
+  end
+
+  #User Signup and Login Routes
   post 'signup', to:'registrations#create'
   post 'login', to:'sessions#create'
 
@@ -8,9 +14,10 @@ Rails.application.routes.draw do
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
   put '/user/update', to: 'users#update';
+  patch '/user/update', to: 'users#update';
 
   #Car Routes
-  resources :cars, only: [:index, :show]
+  resources :cars, except: :update
 
   #Location Routes
   resources :locations, only: [:index, :show]
@@ -28,7 +35,7 @@ Rails.application.routes.draw do
     resources :stop_points, only: [:index]
   end
 
-resources :hh_stop_points, only: [:create, :update]
+  resources :hh_stop_points, only: [:create, :update]
 
   #Create New HH Stop Point
   # post '/hitch-hiking', to: 'hh_stop_points#create'
@@ -42,6 +49,7 @@ resources :hh_stop_points, only: [:create, :update]
   # resources :add_charged_points, only: [:create]
 
   #Notification Routes
+  mount ActionCable.server => '/cable'
   resources :notifications, except: :destroy
 
   #Get User Rating

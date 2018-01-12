@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
     # authenticate is pre-defined in bcrypt which is hashed the password
     if user && user.authenticate(params[:password])
       render json: responseObj(user), status: :ok
+    elsif user && !(user.authenticate(params[:params]))
+      render json: {message: 'Invalid password try again'}, status: :unauthorized
     else
-      render json: {message: 'Invalid email/password'}, status: :unauthorized
+      render json: {message: 'Yor are not a member, you can signUp'}, status: :unauthorized
     end
   end
 

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :profile_pic, ImageUploader
+
   has_many :cars, dependent: :destroy
   has_many :hh_stop_points, class_name: 'HhStopPoint', foreign_key: :hh_id, dependent: :destroy
   has_many :stop_points, through: :hh_stop_points

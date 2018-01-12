@@ -7,7 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 users = User.create([
- {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female' },
+
+ {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female',
+ profile_pic: "https://scontent.fcai2-2.fna.fbcdn.net/v/t1.0-9/26167089_1518615938188041_6113836469478145196_n.jpg?oh=c76a0197e8bd1983f07680faca01e8b5&oe=5ABA0587" },
  {first_name: 'Dina', last_name: 'hamamo', email: 'dinamhamamo@gmail.com', phone: '0121222134', password: 'password', password_confirmation: 'password', gender: 'female'},
  {first_name: 'ahmed', last_name: 'fangary', email: 'ahmedfangary@gmail.com', phone: '0121777134', password: 'password', password_confirmation: 'password', gender: 'male'}
   ])
@@ -42,8 +44,8 @@ hh_stop_points = HhStopPoint.create([
 
 notifications = Notification.create([
   # Driver Notification examples(user_id = driver_id)
-  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 1},
-  {body: 'Woow, you have a new request for yor trip click to see details', user_id: 2, hh_stop_point_id: 2},
+  {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 1},
+  {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 2},
   # HichHicker Notification examples(user_id = HichHicker_id)
   {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},
   {body: 'Woow, your request has been accepted', user_id: 1, hh_stop_point_id: 2},

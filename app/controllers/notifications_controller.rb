@@ -1,22 +1,18 @@
 class NotificationsController < ApplicationController
+  after_action :set_read_attribute, only: :index
 
   def index
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.order(created_at: :DESC)
   end
 
-  def create
-    @notification = Notification.new notification_params
-    if @notification.save!
-      render :show
-    else
-      render json: {message: 'notification error'}, status: :unprocessable_entity
-    end
+  def set_read_attribute
+    @notifications = current_user.notifications.update_all(read: true)
   end
 
-  def update
-    @notification = Notification.find(params[:id])
-    @notification = @notification.update_attributes(notification_params)
-  end
+  # def update
+  #   @notification = Notification.find(params[:id])
+  #   @notification = @notification.update_attributes(notification_params)
+  # end
 
   private
   def notification_params
