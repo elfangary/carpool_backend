@@ -8,8 +8,7 @@
 
 users = User.create([
 
- {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female',
- profile_pic: "https://scontent.fcai2-2.fna.fbcdn.net/v/t1.0-9/26167089_1518615938188041_6113836469478145196_n.jpg?oh=c76a0197e8bd1983f07680faca01e8b5&oe=5ABA0587" },
+ {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female'},
  {first_name: 'Dina', last_name: 'hamamo', email: 'dinamhamamo@gmail.com', phone: '0121222134', password: 'password', password_confirmation: 'password', gender: 'female'},
  {first_name: 'ahmed', last_name: 'fangary', email: 'ahmedfangary@gmail.com', phone: '0121777134', password: 'password', password_confirmation: 'password', gender: 'male'}
   ])
