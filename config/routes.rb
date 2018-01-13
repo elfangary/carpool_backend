@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # User Routes
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
-  put '/user/update', to: 'users#update';
+  patch '/user/update', to: 'users#update';
 
   #Car Routes
   resources :cars, only: [:index, :show]
@@ -49,5 +49,7 @@ resources :hh_stop_points, only: [:create, :update]
 
   #Rate Another User
   patch '/rate_user', to: 'user_rating#update'
+
+  resources :location_requests, only: [:create, :update]
 
 end
