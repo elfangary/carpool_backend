@@ -11,7 +11,7 @@ json.array! @trips do |trip|
     json.location stop_point.location.name
     pending += stop_point.hh_stop_points.length
     json.hh stop_point.hh_stop_points do |hh|
-      json.extract!(hh, :id, :booked_seats, :confirm, :stop_point_id)
+      json.extract!(hh, :id, :hh_id, :booked_seats, :confirm, :stop_point_id)
       json.name "#{hh.hh.first_name} #{hh.hh.last_name}"
       json.profile_pic hh.hh.profile_pic.url
       json.phone hh.hh.phone
