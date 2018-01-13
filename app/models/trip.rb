@@ -9,17 +9,21 @@ class Trip < ApplicationRecord
   scope :upcoming, ->{ where('status = ?', "pending") }
   scope :ongoing, ->{ where('status = ?', "started") }
   scope :history, ->{ where('status IN (?)', ["ended", "cancelled", "timedout"]) }
+  scope :has_seats, ->{where("is_fully_booked=?", false)}
 
 
   def available_seats
     seats = self.stop_points.joins(:hh_stop_points).where('confirm = ?', "accepted").sum :booked_seats
     self.all_seats - seats
   end
-
+  
+  def is_fully_booked?
+    self.available_seats == 0
+  end
   def self.filter_by_day_and_location(day, location_id_start, location_id_end, start_time, end_time)
     self.where('day = ? AND status = ? AND all_seats > ?', day, 'pending', 0)
     .joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
-    .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
+    .joins('INNER JOIN stop_points b ON trips.id = b.trip_id').uniq.select{|t| t.is_fully_booked? == false}
     # .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
   end
 

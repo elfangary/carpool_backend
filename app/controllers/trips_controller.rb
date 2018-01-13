@@ -35,6 +35,7 @@ class TripsController < ApplicationController
 
     render json: {trip: @trip, points: current_user.points}, status: :ok
   end
+
   private
   def set_trip
     @trip = Trip.find params[:id]

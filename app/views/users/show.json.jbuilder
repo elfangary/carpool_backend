@@ -1,5 +1,7 @@
-json.extract!(@current_user, :first_name, :last_name, :email, :gender, :password, :phone, :rate, :points)
+
 json.profile_pic "http://localhost:3001/#{@current_user.profile_pic.url}"
+json.extract!(current_user, :first_name, :last_name, :email, :gender, :password, :phone, :profile_pic, :rate, :raters_no, :points)
+
 
 
 #   json.cars do

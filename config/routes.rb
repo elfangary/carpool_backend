@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #Admin Signup and Login Routes
-  namespace :admin do 
+  namespace :admin do
     post 'signup', to: 'regestration#create';
     post 'login', to: 'login#create';
   end
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   # User Routes
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
-  put '/user/update', to: 'users#update';
   patch '/user/update', to: 'users#update';
 
   #Car Routes
@@ -53,19 +52,11 @@ Rails.application.routes.draw do
   resources :notifications, except: :destroy
 
   #Get User Rating
-  get '/rating', to: 'user_rating#index'
+  get '/rating', to: 'user_rating#show'
 
   #Rate Another User
+  patch '/rate_user', to: 'user_rating#update'
 
-  # patch '/add_rate', to: 'user_rating#update'
-  patch '/add_rate', to: 'user_rating#update'
+  resources :location_requests, only: [:create, :update]
 
-  #Change Trip Status
-  # patch '/trip_status', to:'change_trip_status#update'
-
-  #Add trip balance to driver
-  # patch '/add_to_driver', to: 'trip_balance_to_driver#update'
-
-  #Add trip balance to hh
-  post '/add_to_hh', to: 'trip_balance_to_hh#create'
 end
