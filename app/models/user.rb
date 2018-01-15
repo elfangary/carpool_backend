@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :hh_stop_points, class_name: 'HhStopPoint', foreign_key: :hh_id, dependent: :destroy
   has_many :stop_points, through: :hh_stop_points
   has_many :trips, through: :stop_points
-  # has_many :location_requests, dependent: :destroy
   has_many :trips, class_name: 'Trip', foreign_key: :driver_id, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
