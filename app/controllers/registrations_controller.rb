@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       render json: @user, status: :created
     else
-      render json: {message: 'You entered something wrong'}, status: :unauthorized
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 

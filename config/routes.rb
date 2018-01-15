@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #Admin Signup and Login Routes
-  namespace :admin do 
+  namespace :admin do
     post 'signup', to: 'regestration#create';
     post 'login', to: 'login#create';
   end
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   # User Routes
   get '/user', to: 'users#show';
   delete '/user/destroy', to: 'users#destroy';
-  put '/user/update', to: 'users#update';
   patch '/user/update', to: 'users#update';
 
   #Car Routes
@@ -57,5 +56,4 @@ Rails.application.routes.draw do
 
   #Rate Another User
   patch '/rate_user', to: 'user_rating#update'
-
 end

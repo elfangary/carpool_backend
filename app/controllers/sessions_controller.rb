@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     elsif user && !(user.authenticate(params[:password]))
       render json: {message: 'Invalid password try again'}, status: :unauthorized
     else
-      render json: {message: 'Yor are not a member, you can signUp'}, status: :unauthorized
+      render json: {message: 'You are not a member, you can signUp'}, status: :unauthorized
     end
   end
 
