@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-     has_many :stop_points, dependent: :destroy
+  has_many :stop_points, dependent: :destroy
 
-     validates :name, presence: true
+  validates :name, presence: true
 end
