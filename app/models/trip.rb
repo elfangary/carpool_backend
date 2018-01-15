@@ -23,8 +23,8 @@ class Trip < ApplicationRecord
   def self.filter_by_day_and_location(day, location_id_start, location_id_end, start_time, end_time)
     self.where('day = ? AND status = ? AND all_seats > ?', day, 'pending', 0)
     .joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
-    .joins('INNER JOIN stop_points b ON trips.id = b.trip_id').uniq.select{|t| t.is_fully_booked? == false}
-    # .where('a.location_id': location_id_start, 'a.start_time': [start_time, end_time], 'b.location_id': location_id_end)
+    .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')
+    .where('a.location_id': location_id_start, 'b.location_id': location_id_end).uniq.select{|t| t.is_fully_booked? == false}
   end
 
   def change_available_seats
