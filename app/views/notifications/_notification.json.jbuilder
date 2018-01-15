@@ -8,3 +8,4 @@ if(notification.body.split(' ')[0] == "You")
   json.type "driving"
 else
   json.type "hitch-hiking"
+end
