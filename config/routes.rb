@@ -56,7 +56,4 @@ Rails.application.routes.draw do
 
   #Rate Another User
   patch '/rate_user', to: 'user_rating#update'
-
-  resources :location_requests, only: [:create, :update]
-
 end

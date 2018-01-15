@@ -3,12 +3,15 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     # authenticate is pre-defined in bcrypt which is hashed the password
+    result =  user.authenticate(params[:password])
+
+    puts "heeeeeeeeeeeeeeeeeey#{result}"
     if user && user.authenticate(params[:password])
       render json: responseObj(user), status: :ok
-    elsif user && !(user.authenticate(params[:params]))
+    elsif user && !(user.authenticate(params[:password]))
       render json: {message: 'Invalid password try again'}, status: :unauthorized
     else
-      render json: {message: 'Yor are not a member, you can signUp'}, status: :unauthorized
+      render json: {message: 'You are not a member, you can signUp'}, status: :unauthorized
     end
   end
 
