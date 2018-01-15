@@ -4,14 +4,19 @@ class Trip < ApplicationRecord
   accepts_nested_attributes_for :stop_points
   belongs_to :driver, class_name: 'User'
   belongs_to :car
-  validates :day, :all_seats, :driver_id, :car_id, presence: true
+  validates :day, :all_seats, presence: true
   validates :all_seats, numericality: { less_than_or_equal_to: 4,  only_integer: true }
+  validate :day_cannot_be_in_the_past
 
   scope :upcoming, ->{ where('status = ?', "pending") }
   scope :ongoing, ->{ where('status = ?', "started") }
   scope :history, ->{ where('status IN (?)', ["ended", "cancelled", "timedout"]) }
   scope :has_seats, ->{where("is_fully_booked=?", false)}
 
+
+  def day_cannot_be_in_the_past
+    errors.add(:day, 'cannot be in the past!') if self.day < Time.current unless day.nil?
+  end
 
   def available_seats
     seats = self.stop_points.joins(:hh_stop_points).where('confirm = ?', "accepted").sum :booked_seats
@@ -22,7 +27,7 @@ class Trip < ApplicationRecord
     self.available_seats == 0
   end
 
-  def self.filter_by_day_and_location(day, location_id_start, location_id_end, start_time, end_time)
+  def self.filter_by_day_and_location(day, location_id_start, location_id_end)
     self.where('day = ? AND status = ? AND all_seats > ?', day, 'pending', 0)
     .joins('INNER JOIN stop_points a ON trips.id = a.trip_id')
     .joins('INNER JOIN stop_points b ON trips.id = b.trip_id')

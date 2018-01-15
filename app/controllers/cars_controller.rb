@@ -14,8 +14,7 @@ class CarsController < ApplicationController
     if @car.save!
       render json: @car, status: :created
     else
-      byebug
-      render json: @car.errors, status: :unauthorized
+      render json: @car.errors.full_messages, status: :unauthorized
     end
   end
 
