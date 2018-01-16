@@ -18,6 +18,7 @@ json.array! @trips do |trip|
       json.rate hh.hh.rate
       json.email hh.hh.email
       json.hh_id hh.hh.id
+      json.requested_location hh.stop_point.location.name
       start ||= (hh.confirm == 'accepted')
       pending += 1 if (hh.confirm == 'pending')
       booked += hh.booked_seats
