@@ -3,7 +3,6 @@ class HhStopPointsController < ApplicationController
     before_action :set_stop_point, only: [:create]
     before_action :set_hh_stop_point, only: [:update]
     after_action :create_notification, only: :create
-    # after_action :show_notification, only: :create_notification
     after_action :create_notification_after_update, only: :update
 
     def create
@@ -12,21 +11,13 @@ class HhStopPointsController < ApplicationController
         if @hh_stop_point.save
             render json: @hh_stop_point, status: :ok
         else
-            render json: @_hh_stop_point.errors, status: :unprocessable_entity
+            render json: @_hh_stop_point.errors.full_messages, status: :unprocessable_entity
         end
     end
 
-    # def show_notification
-    #     render json: @notification, status: :ok
-    # end
-
-    # {pending, accepted, rejected, cancelled, timedout}
-
     def update
         @hh_stop_point.accept_or_reject_hhStopPoint(params[:confirm])
-
         @hh_stop_point.add_points_to_hh if params[:confirm] == "rejected"
-
         render json: {hh_stop_point: @hh_stop_point, points: current_user.points}, status: :ok
     end
 
