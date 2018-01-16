@@ -53,7 +53,7 @@ class HhStopPointsController < ApplicationController
         elsif (params[:confirm] == "cancelled")
             @notification.body = 'Sorry,The Trip have been cancelled'
         else
-            @notification.body = 'You got your points back, check your points'
+            @notification.body = 'you got your points back, check your points'
         end
         @notification.user_id = @hh_stop_point.hh_id
         @notification.save!
