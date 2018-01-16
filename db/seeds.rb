@@ -41,14 +41,14 @@ hh_stop_points = HhStopPoint.create!([
   {hh_id: 2, booked_seats: 2, stop_point_id: 2}
   ])
 
-notifications = Notification.create!([
-  # Driver Notification examples(user_id = driver_id)
-  {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 1},
-  {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 2},
-  # HichHicker Notification examples(user_id = HichHicker_id)
-  {body: 'your request has been accepted', user_id: 1, hh_stop_point_id: 2},
-  {body: 'your request has been accepted', user_id: 1, hh_stop_point_id: 2},
-  {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
-  {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
-  {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 1}
-  ])
+# notifications = Notification.create!([
+#   # Driver Notification examples(user_id = driver_id)
+#   {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 1},
+#   {body: 'you have a new request for yor trip', user_id: 2, hh_stop_point_id: 2},
+#   # HichHicker Notification examples(user_id = HichHicker_id)
+#   {body: 'your request has been accepted', user_id: 1, hh_stop_point_id: 2},
+#   {body: 'your request has been accepted', user_id: 1, hh_stop_point_id: 2},
+#   {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
+#   {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 2},
+#   {body: 'your request has been refused But you can try again', user_id: 1, hh_stop_point_id: 1}
+#   ])
