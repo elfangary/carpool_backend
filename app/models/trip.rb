@@ -22,7 +22,7 @@ class Trip < ApplicationRecord
     seats = self.stop_points.joins(:hh_stop_points).where('confirm = ?', "accepted").sum :booked_seats
     self.all_seats - seats
   end
-  
+
   def is_fully_booked?
     self.available_seats == 0
   end

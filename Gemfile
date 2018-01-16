@@ -29,6 +29,8 @@ gem 'jwt'
 gem 'stripe'
 
 gem 'carrierwave', '~> 0.10.0'
+gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick', '~> 4.3'
 
 group :development, :test do
