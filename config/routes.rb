@@ -36,16 +36,9 @@ Rails.application.routes.draw do
 
   resources :hh_stop_points, only: [:create, :update]
 
-  #Create New HH Stop Point
-  # post '/hitch-hiking', to: 'hh_stop_points#create'
-
-  #Update Hh Stop Point
-  # patch '/hitch-hicker-point-update', to: 'hh_stop_point#update'
-
   #Create a new payment
   resources :charges, only: [:create]
   post '/add_charged_points', to: 'add_charged_points#charge'
-  # resources :add_charged_points, only: [:create]
 
   #Notification Routes
   mount ActionCable.server => '/cable'
