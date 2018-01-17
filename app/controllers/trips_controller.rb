@@ -12,7 +12,7 @@ class TripsController < ApplicationController
 
   def create
     @driver_id = current_user.id
-    @trip = Trip.new trip_params    
+    @trip = Trip.new trip_params
     if @trip.save
       end_time = Time.zone.at(params[:time_in_seconds] / 1000)
       TripStatusJob.set(wait_until: end_time).perform_later(@trip)

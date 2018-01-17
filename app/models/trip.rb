@@ -15,7 +15,7 @@ class Trip < ApplicationRecord
 
 
   def day_cannot_be_in_the_past
-    errors.add(:day, 'cannot be in the past!') if self.day < Time.current unless day.nil?
+    errors.add(:day, 'cannot be in the past!') if self.day < Date.current unless day.nil?
   end
 
   def available_seats
