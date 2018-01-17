@@ -44,9 +44,7 @@ class HhStopPointsController < ApplicationController
 
     def create_notification_after_update
         @notification = @hh_stop_point.notifications.new
-        if (params[:confirm] == "pending")
-            @notification.body = 'Your request have been sent, wait for answer'
-        elsif (params[:confirm] == "accepted")
+        if (params[:confirm] == "accepted")
             @notification.body = 'Your request have been accepted'
         elsif (params[:confirm] == "rejected")
             @notification.body = 'Your request have been rejected'
