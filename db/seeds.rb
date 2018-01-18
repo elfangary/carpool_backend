@@ -24,5 +24,13 @@ locations = Location.create!([
   {name: 'Nasr City'},
   {name: '6 October'},
   {name: 'Remaya'},
-  {name: 'Maadi'}
+  {name: 'Maadi'},
+  {name: 'Madinaty'},
+  {name: 'Al Rehab'},
+  {name: 'Giza'},
+  {name: 'Duqqi'},
+  {name: 'Al Haram'},
+  {name: 'Mokattam'},
+  {name: 'Marj'},
+  {name: 'El Shorouk'}
   ])
