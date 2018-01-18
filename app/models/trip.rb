@@ -1,6 +1,7 @@
 class Trip < ApplicationRecord
   has_many :stop_points
   has_many :hh_stop_points, through: :stop_points
+  has_many :hitch_hikers, through: :hh_stop_points, source: :hh
   accepts_nested_attributes_for :stop_points
   belongs_to :driver, class_name: 'User'
   belongs_to :car
