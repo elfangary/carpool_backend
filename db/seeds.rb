@@ -28,19 +28,20 @@ locations = Location.create!([
   {name: 'Maadi'}
   ])
 
+puts "trips creating"
 trips = Trip.create!([
   {car_id: 1, driver_id: 1, day: "2018-01-20", all_seats: 4},
   {car_id: 1, driver_id: 1, day: "2018-01-21", all_seats: 4}
   ])
 
+puts "stop_points"
 stop_points = StopPoint.create!([
   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:1},
   {start_time: '04:00', end_time: '04:30', location_id: 2, trip_id:1},
   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:2}
   ])
-
-hh_stop_points = HhStopPoint.create!([
-  {hh_id: 3, booked_seats: 1, stop_point_id: 1},
-  {hh_id: 2, booked_seats: 2, stop_point_id: 2}
-  ])
+# puts "hh_stop_points"
+# hh_stop_points = HhStopPoint.create!([
+#   {hh_id: 3, booked_seats: 1, stop_point_id: 1}
+#   ])
 
