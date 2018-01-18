@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 users = User.create!([
  {first_name: 'Alaa', last_name: 'Tohamy', email: 'alaatohamy4@gmail.com', phone: '0121111134', password: 'password', password_confirmation: 'password', gender: 'female'},
 
@@ -20,41 +21,27 @@ cars = Car.create!([
   ])
 
 locations = Location.create!([
-  {name: 'carrefour maadi'},
-  {name: 'Naser city'},
-  {name: '6 october'}
+  {name: 'Heliopolis'},
+  {name: 'Nasr City'},
+  {name: '6 October'},
+  {name: 'Remaya'},
+  {name: 'Maadi'}
   ])
 
-# trips = Trip.create([
-#   {car_id: 1, driver_id: 1, day: "2018-01-03", all_seats: 4},
-#   {car_id: 1, driver_id: 1, day: "2018-01-04", all_seats: 4}
-#   ])
-
-
-# stop_points = StopPoint.create([
-#   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:1},
-#   {start_time: '04:00', end_time: '04:30', location_id: 2, trip_id:1},
-#   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:2}
-#   ])
-
-# hh_stop_points = HhStopPoint.create([
-#   {hh_id: 3, booked_seats: 1, stop_point_id: 1},
-#   {hh_id: 2, booked_seats: 2, stop_point_id: 2}
-#   ])
-
+puts "trips creating"
 trips = Trip.create!([
   {car_id: 1, driver_id: 1, day: "2018-01-20", all_seats: 4},
   {car_id: 1, driver_id: 1, day: "2018-01-21", all_seats: 4}
   ])
 
+puts "stop_points"
 stop_points = StopPoint.create!([
   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:1},
   {start_time: '04:00', end_time: '04:30', location_id: 2, trip_id:1},
   {start_time: '02:00', end_time: '02:30', location_id: 1, trip_id:2}
   ])
-
-hh_stop_points = HhStopPoint.create!([
-  {hh_id: 3, booked_seats: 1, stop_point_id: 1},
-  {hh_id: 2, booked_seats: 2, stop_point_id: 2}
-  ])
+# puts "hh_stop_points"
+# hh_stop_points = HhStopPoint.create!([
+#   {hh_id: 3, booked_seats: 1, stop_point_id: 1}
+#   ])
 
